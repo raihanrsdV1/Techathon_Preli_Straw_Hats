@@ -6,6 +6,7 @@ Welcome to our submission for the Techathon Phase-01 competition. This project t
 - Solutions to Quick Fixes, Tech Tricks, Bonus Boosters, and Big Idea
 - Hardware Simulation Code
 - Video Demo Link: [To be attached]
+- Wokwi Project Link: https://wokwi.com/projects/429404013375725569
 
 ---
 
