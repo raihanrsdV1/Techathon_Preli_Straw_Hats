@@ -246,11 +246,115 @@ This stack ensures a scalable, efficient, and interactive dashboard that can han
 # Bonus Boosters
 
 ### Q1: RESTful API for Order Placement
-**Endpoints**:
-- `POST /order`
-- `GET /order/:id`
-- `POST /order/:id/items`
-- `POST /order/submit`
+
+## Table of Contents
+- [Public Menu Endpoint](#public-menu-endpoint)
+- [Admin Endpoints](#admin-endpoints)
+  - [Menu Items](#menu-items)
+  - [Tables](#tables)
+- [Order Endpoints](#order-endpoints)
+- [Statistics Endpoint](#statistics-endpoint)
+- [Additional Endpoints](#additional-endpoints)
+
+---
+
+## Public Menu Endpoint
+
+### `GET /api/menu`
+- **Description**: Fetches a list of currently available menu items (`item_id` and `name` only).
+- **Intended For**: Hardware devices.
+
+---
+
+## Admin Endpoints
+
+### Menu Items
+
+- **GET `/api/admin/menu-items`**
+  - Fetch all menu items with full details (ID, name, price, availability).
+
+- **POST `/api/admin/menu-items`**
+  - Add a new menu item.
+  - **Body Parameters**:
+    - `name` (string, required)
+    - `price` (number, required)
+    - `availability` (boolean, optional; defaults to `true`)
+
+- **PUT `/api/admin/menu-items/:itemId`**
+  - Update an existing menu item by ID.
+  - **URL Params**:
+    - `itemId` (integer)
+  - **Body Parameters** (optional):
+    - `name` (string)
+    - `price` (number)
+    - `availability` (boolean)
+
+- **DELETE `/api/admin/menu-items/:itemId`**
+  - Delete a menu item by ID.
+  - **URL Params**:
+    - `itemId` (integer)
+
+---
+
+### Tables
+
+- **GET `/api/admin/tables`**
+  - Fetch all existing table numbers.
+
+- **POST `/api/admin/tables`**
+  - Add the next sequential table number automatically.
+
+- **DELETE `/api/admin/tables/last`**
+  - Delete the table with the highest table number.
+
+---
+
+## Order Endpoints
+
+- **POST `/api/orders`**
+  - Create a new order with status `pending`.
+  - **Body Parameters**:
+    - `tableNumber` (integer, required)
+    - `items` (array of objects, each with `itemId` (integer) and `quantity` (integer > 0))
+
+- **GET `/api/orders`**
+  - Fetch a list of orders.
+  - **Optional Query Parameters**:
+    - `status` (string, e.g., `'pending'`, `'delivered'`)
+
+- **PUT `/api/orders/:orderId/deliver`**
+  - Mark a `pending` order as `delivered` and set its `delivery_time`.
+  - **URL Params**:
+    - `orderId` (integer)
+
+---
+
+## Statistics Endpoint
+
+- **GET `/api/statistics`**
+  - Fetch real-time order statistics for the past hour.
+  - **Returns**:
+    - `averageFulfillmentMinutesPastHour`
+    - `totalSalesPastHour`
+    - `deliveriesPerMinutePastHour` (array of `{ minute, count }`)
+
+---
+
+## Additional Endpoints
+
+- **POST `/order`**
+  - Create a new order.
+
+- **GET `/order/:id`**
+  - Fetch an order by its ID.
+
+- **POST `/order/:id/items`**
+  - Add items to an existing order.
+
+- **POST `/order/submit`**
+  - Submit an order for processing.
+
+---
 
 ### Q2: Extreme Scalability Strategies
 
