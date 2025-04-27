@@ -3,7 +3,7 @@
 Welcome to our submission for the Techathon Phase-01 competition. This project transforms the dining experience at Bistro 92 using smart ordering devices placed on every table.
 
 ## Submission Contents
-- Solutions to Quick Fixes, Tech Tricks, Bonus Boosters, and Big Idea
+- [Solutions to Quick Fixes, Tech Tricks, Bonus Boosters, and Big Idea](#quick-fixes)
 - Hardware Simulation Code
 - Video Demo Link: [To be attached]
 - Wokwi Project Link: https://wokwi.com/projects/429404013375725569
