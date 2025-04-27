@@ -9,6 +9,102 @@ Welcome to our submission for the Techathon Phase-01 competition. This project t
 
 ---
 
+# ESP32 Menu System
+
+A menu system using ESP32 DevKit V1, SSD1306 OLED (128x64, I2C), and 4 push buttons.
+
+## Components
+- **ESP32 DevKit V1**: WiFi and control.
+- **SSD1306 OLED**: Displays menu and status.
+- **Buttons**:
+  - Menu/Reset (GPIO 12)
+  - Select/Submit (GPIO 13)
+  - Scroll Up (GPIO 14)
+  - Scroll Down (GPIO 18)
+
+## Connections
+### OLED
+| Pin | ESP32 Pin |
+|-----|-----------|
+| VCC | 3.3V      |
+| GND | GND       |
+| SDA | GPIO 21   |
+| SCL | GPIO 22   |
+
+### Buttons
+Each button connects to its GPIO (12, 13, 14, 18) and GND. Use `INPUT_PULLUP`.
+
+## Diagram
+![Circuit Diagram!](assets/circuit.png)
+
+## Notes
+- **Power**: OLED uses ESP32 3.3V. Power ESP32 via USB or 5V VIN.
+- **Pins**: GPIO 21/22 for I2C, 12/13/14/18 for buttons. Avoid GPIO 0/2.
+- **Code**: Set `pinMode(pin, INPUT_PULLUP)` for buttons. Use `Adafruit_SSD1306` for OLED.
+- **Wokwi**: Verify pins and grounding for physical setups.
+
+## Usage
+1. Connect circuit.
+2. Upload code to ESP32.
+3. Navigate menu with buttons; view status on OLED.
+
+## Troubleshooting
+- **OLED Failure**: Check 3.3V, GND, SDA/SCL, I2C address (0x3C).
+- **Button Issues**: Verify GPIO, `INPUT_PULLUP`, and connections.
+
+---
+
+# Pipeline Architecture
+
+## Pipeline Diagram
+```plaintext
+┌─────────────────┐       HTTP/WebSocket       ┌─────────────────┐
+│   Smart Pad     │ <────────────────────────> │   Backend API   │
+│ (ESP32 Device)  │ ────── Order Data ───────> │ (Cloud Server)  │
+└─────────────────┘ <────── Status Updates ────└─────────────────┘
+       ▲                                               │
+       │                                               │
+       │ WebSocket/HTTP                                │ Database Sync
+       │                                               ▼
+┌─────────────────┐       HTTP/WebSocket       ┌─────────────────┐
+│   Frontend      │ <────────────────────────> │   Backend API   │
+│ (Admin Dashboard │ <─── Real-time Orders ─── │ (Cloud Server)  │
+│ / Customer UI)   │ ──── Inventory Updates ─> │                 │
+└─────────────────┘                            └─────────────────┘
+```
+
+## Key Flows:
+
+### Smart Pad ↔ Backend API
+
+#### Smart Pad to Backend:
+- The Smart Pad sends order data to the backend via HTTP POST or RESTful API. 
+- The payload typically includes the table ID and the items ordered, including quantities.
+
+#### Backend to Smart Pad:
+- The backend sends order confirmations or status updates to the Smart Pad, such as "Order received" or "Order being prepared."
+- These updates are communicated via HTTP responses or WebSocket connections.
+
+### Backend API ↔ Frontend (Admin/Customer UI)
+
+#### Backend to Frontend:
+- The backend provides real-time order updates to the frontend dashboard via WebSocket or polling.
+- The system also keeps the frontend updated with inventory status and order tracking.
+
+#### Frontend to Backend:
+- The frontend may send manual order overrides or cancellations to the backend. 
+- Other functionalities such as real-time monitoring and updates are also managed via backend interactions.
+
+### Backend Internal Flow
+
+#### Database Operations:
+- The backend uses databases like PostgreSQL to persist order information and track inventory status.
+
+#### Kitchen Notifications:
+- The system pushes real-time notifications to the kitchen whenever a new order is placed or updated. These notifications may be handled via WebSocket or push notifications.
+
+---
+
 # Quick Fixes
 
 ### Q1: Three Essential Features
@@ -88,7 +184,7 @@ ORDER BY
   - Node.js with Express
 
 - **Realtime Updates**:
-  - 
+  - PostgreSQl (with real-time subscriptions)
 
 ## Description
 
@@ -209,11 +305,3 @@ This stack ensures a scalable, efficient, and interactive dashboard that can han
 - Enhances accessibility for a diverse customer base.
 - Reduces mistakes due to miscommunication.
 - Personalizes the dining experience for customers of different linguistic backgrounds.
-
----
-
-# Submission Info
-- **Video Demo**: [Google Drive Link Here]
-
-Thank you for considering our solution for Techathon Phase-01!
-
