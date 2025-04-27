@@ -1,0 +1,51 @@
+.kitchen-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two equal columns */
+    gap: 30px; /* Gap between columns */
+    align-items: start; /* Align items to the top */
+  }
+  
+  .kitchen-panel {
+    /* Basic panel styling, inherits from .section */
+  }
+  
+  .left-panel {
+    /* Specific styles for left panel if needed */
+  }
+  
+  .right-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 30px; /* Gap between stats and past orders */
+  }
+  
+  .stats-panel {
+    /* Specific styles for stats panel if needed */
+  }
+  
+  .past-orders-panel {
+    /* Specific styles for past orders panel if needed */
+  }
+  
+  /* Make order lists scrollable if they get too long */
+  /* Use the container class names from the components */
+  .left-panel .kitchen-order-list, /* Matches PendingOrderList container */
+  .past-orders-panel .past-order-list { /* Matches PastOrderList container */
+    max-height: 65vh; /* Adjust height as needed */
+    overflow-y: auto;
+    padding-right: 10px; /* Add padding for scrollbar */
+    /* Add some padding at the bottom inside the scrollable area */
+    padding-bottom: 10px;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 992px) {
+    .kitchen-layout {
+      grid-template-columns: 1fr; /* Stack columns on smaller screens */
+    }
+    .left-panel .kitchen-order-list,
+    .past-orders-panel .past-order-list {
+       max-height: none; /* Remove height limit when stacked */
+       overflow-y: visible;
+    }
+  }

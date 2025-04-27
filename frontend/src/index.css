@@ -1,0 +1,414 @@
+/* --- Base & Refined Styles --- */
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  margin: 0;
+  background-color: #f0f2f5; /* Lighter, cooler grey */
+  color: #333;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1400px; /* Slightly wider */
+  margin: 0 auto;
+  padding: 25px;
+}
+
+h1, h2, h3 {
+  color: #1a202c; /* Darker text for headings */
+  margin-bottom: 1rem;
+}
+h1 { font-size: 2.25rem; font-weight: 700; }
+h2 { font-size: 1.5rem; font-weight: 600; }
+h3 { font-size: 1.25rem; font-weight: 600; }
+
+
+/* Navbar */
+.navbar {
+  background-color: #ffffff; /* White navbar */
+  padding: 10px 25px;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 0 0 10px 10px;
+}
+.navbar-brand {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #2c5282; /* Bistro blue */
+}
+.navbar-links {
+  display: flex;
+  gap: 15px;
+}
+.nav-link {
+  color: #4a5568; /* Grey text */
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  font-weight: 500;
+}
+.nav-link:hover {
+  background-color: #edf2f7; /* Light grey hover */
+  color: #2c5282; /* Blue text on hover */
+}
+.nav-link.active {
+  background-color: #2c5282; /* Blue background for active */
+  color: #ffffff; /* White text for active */
+}
+
+/* Connection Status */
+.connection-status {
+  font-size: 0.85em;
+  padding: 4px 8px;
+  border-radius: 12px; /* Pill shape */
+  font-weight: 500;
+}
+.connection-status.connected {
+  color: #38a169; /* Green */
+  background-color: #c6f6d5; /* Light green */
+}
+.connection-status.disconnected {
+  color: #e53e3e; /* Red */
+  background-color: #fed7d7; /* Light red */
+}
+
+
+/* Sections */
+.section {
+  margin-bottom: 30px;
+  padding: 25px; /* More padding */
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); /* Slightly stronger shadow */
+}
+.section h2 {
+  margin-top: 0;
+  border-bottom: 1px solid #e2e8f0; /* Lighter border */
+  padding-bottom: 12px;
+  margin-bottom: 25px;
+  color: #2c5282; /* Blue heading */
+}
+
+/* Grid Layout */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 30px; /* Increased gap */
+}
+.grid-item {
+  /* Inherits section styling if grid items are direct children of .section.grid */
+  /* If grid items are not sections, add styling here: */
+  /* background-color: #ffffff; */
+  /* padding: 25px; */
+  /* border-radius: 8px; */
+  /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); */
+}
+
+
+/* Statistics Section */
+.statistics {
+  /* Can be applied directly to the component or its container */
+  background-color: #f7fafc; /* Very light grey */
+  padding: 20px;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+}
+.stat-item {
+  margin-bottom: 15px;
+  font-size: 1.1em;
+  display: flex;
+  justify-content: space-between; /* Align label and value */
+  align-items: center;
+}
+.stat-item:last-child { margin-bottom: 0; }
+.stat-item strong {
+  color: #4a5568;
+  margin-right: 10px;
+}
+.stat-item span {
+  font-weight: 600; /* Bolder value */
+  color: #2c5282; /* Blue value */
+  background-color: #ebf8ff; /* Light blue background for value */
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+
+/* Form Styling */
+form { display: flex; flex-direction: column; gap: 15px; margin-bottom: 25px; }
+form div { margin-bottom: 0; } /* Remove default div margin if using gap */
+form label { font-weight: 600; color: #4a5568; margin-bottom: 5px; display: block; }
+form input[type="text"],
+form input[type="number"],
+form select {
+  width: 100%;
+  padding: 12px; /* Increased padding */
+  border: 1px solid #cbd5e0; /* Lighter border */
+  border-radius: 6px;
+  box-sizing: border-box;
+  font-size: 1em;
+  background-color: #fff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+form input:focus, form select:focus {
+  border-color: #4299e1; /* Blue focus border */
+  outline: 0;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.3); /* Blue focus shadow */
+}
+form input[type="checkbox"] { margin-right: 8px; height: 1em; width: 1em; }
+form span { vertical-align: middle; color: #4a5568; }
+
+
+/* Button Styles */
+button {
+  padding: 10px 20px; /* Slightly larger */
+  border: none;
+  border-radius: 6px; /* More rounded */
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: 500; /* Medium weight */
+  transition: all 0.2s ease-in-out;
+  margin-right: 8px;
+  line-height: 1.5; /* Ensure text vertical alignment */
+}
+button:hover { transform: translateY(-1px); box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+button:active { transform: translateY(0); box-shadow: 0 1px 2px rgba(0,0,0,0.08); }
+button:last-child { margin-right: 0; }
+
+/* Specific Button Colors (Refined) */
+button.primary, form button[type="submit"] { background-color: #3182ce; color: white; } /* Brighter Blue */
+button.primary:hover, form button[type="submit"]:hover { background-color: #2b6cb0; }
+
+button.edit { background-color: #ecc94b; color: #422000; } /* Yellow */
+button.edit:hover { background-color: #d69e2e; }
+
+button.delete { background-color: #e53e3e; color: white; } /* Red */
+button.delete:hover { background-color: #c53030; }
+
+button.save { background-color: #38a169; color: white; } /* Green */
+button.save:hover { background-color: #2f855a; }
+
+button.cancel { background-color: #718096; color: white; } /* Grey */
+button.cancel:hover { background-color: #4a5568; }
+
+
+/* List Styling (Used in Menu/Table lists) */
+ul { list-style: none; padding: 0; margin: 0; }
+li {
+  /* Base li styles if needed, but often overridden by specific list item styles */
+}
+/* Example for Admin Menu/Table List Items */
+.admin-list-item { /* Add this class to li elements in MenuItemList/TableList if needed */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 15px;
+  border: 1px solid #e2e8f0; /* Lighter border */
+  border-radius: 6px;
+  margin-bottom: 10px;
+  background-color: white;
+  transition: box-shadow 0.2s ease;
+}
+.admin-list-item:hover { box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+.admin-list-item span { flex-grow: 1; margin-right: 15px; color: #4a5568; }
+.admin-list-item div { display: flex; gap: 8px; } /* Spacing for buttons in li */
+
+
+/* Table Styling (Refined) */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 25px;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  overflow: hidden; /* Ensures border-radius applies to corners */
+}
+th, td {
+  border: none; /* Remove individual cell borders */
+  border-bottom: 1px solid #e2e8f0; /* Row separator */
+  padding: 14px 18px;
+  text-align: left;
+  vertical-align: middle;
+  color: #4a5568;
+}
+th {
+  background-color: #f7fafc; /* Very light grey header */
+  font-weight: 600;
+  color: #2d3748; /* Darker grey for header text */
+  text-transform: uppercase;
+  font-size: 0.85em;
+  letter-spacing: 0.05em;
+}
+tr:last-child td {
+    border-bottom: none; /* Remove border from last row */
+}
+tr:hover {
+    background-color: #f7fafc; /* Subtle hover for rows */
+}
+td button { /* Smaller buttons in tables */
+  padding: 5px 10px;
+  font-size: 0.85em;
+  margin-right: 5px;
+}
+td button:last-child { margin-right: 0; }
+
+
+/* Error message styling */
+.error {
+  color: #c53030; /* Darker Red */
+  background-color: #fed7d7; /* Lighter Red */
+  border: 1px solid #feb2b2;
+  padding: 12px 15px;
+  border-radius: 6px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  font-weight: 500;
+}
+
+/* Status Badges */
+.status-pending,
+.status-accepted, /* Keep accepted for potential future use */
+.status-declined, /* Keep declined for potential future use */
+.status-delivered {
+  font-weight: bold;
+  padding: 3px 8px; /* Slightly more padding */
+  border-radius: 6px; /* Match button radius */
+  font-size: 0.85em; /* Slightly smaller */
+  display: inline-block; /* Ensure padding applies correctly */
+  text-transform: capitalize;
+}
+
+.status-pending {
+  color: #b7791f; /* Darker Yellow/Brown */
+  background-color: #fefcbf; /* Light Yellow */
+}
+.status-accepted {
+  color: #2f855a; /* Darker Green */
+  background-color: #c6f6d5; /* Light Green */
+}
+.status-declined {
+  color: #c53030; /* Darker Red */
+  background-color: #fed7d7; /* Light Red */
+}
+.status-delivered {
+  color: #2c5282; /* Darker Blue */
+  background-color: #ebf8ff; /* Light Blue */
+}
+
+/* --- Order Card Styling (Consolidated & Refined) --- */
+
+/* Container for list of order cards (e.g., in PendingOrderList, PastOrderList) */
+.kitchen-order-list, /* Used by PendingOrderList */
+.past-order-list {   /* Used by PastOrderList */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+  gap: 25px;
+}
+
+/* Base card style */
+.order-card {
+  border: 1px solid #e2e8f0;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Push actions to bottom */
+  /* margin-bottom: 1.5rem; /* Use gap in grid instead */
+}
+
+.order-card h4 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  /* Color defined by specific card type below */
+  font-size: 1.1em;
+}
+
+.order-card p {
+    margin: 4px 0;
+    color: #4a5568;
+    font-size: 0.95em;
+}
+.order-card p strong {
+    color: #2d3748;
+}
+
+/* Style for item lists within cards */
+.order-items {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  font-size: 0.9em;
+  color: #4a5568;
+}
+.order-items li {
+    margin-bottom: 5px;
+    padding: 5px 0 5px 15px; /* Add padding */
+    position: relative;
+    border: none; /* Override default li border */
+    background: none; /* Override default li background */
+    box-shadow: none; /* Override default li shadow */
+}
+.order-items li::before {
+    content: '•'; /* Bullet point */
+    position: absolute;
+    left: 0;
+    color: #3182ce; /* Blue bullet */
+    font-size: 1.2em;
+    line-height: 1;
+}
+.order-items li strong { /* Item name */
+    color: #2d3748;
+}
+
+/* Actions area at the bottom of cards */
+.order-actions {
+  margin-top: 20px; /* Space above button */
+  padding-top: 15px;
+  border-top: 1px solid #e2e8f0; /* Separator */
+  display: flex; /* Needed if more than one button */
+  justify-content: flex-end; /* Align button(s) to the right */
+}
+
+/* Specific card type styling */
+.pending-card {
+  border-left: 5px solid orange; /* Highlight pending orders */
+}
+.pending-card h4 {
+    color: #dd6b20; /* Orange heading for pending */
+}
+/* Style for the deliver button within pending cards */
+.pending-card .order-actions button.save {
+    width: 100%; /* Full width button */
+    font-weight: 600;
+    /* Uses default .save button styles (green) */
+}
+
+
+.delivered-card {
+  border-left: 5px solid #2c5282; /* Blue border for delivered */
+  background-color: #f7fafc; /* Slightly different background */
+}
+.delivered-card h4 {
+    color: #2c5282; /* Blue heading for delivered */
+}
+/* No actions typically needed for delivered cards */
+.delivered-card .order-actions {
+    display: none;
+}
+
+/* --- End of Consolidated Order Card Styles --- */
+
+/* --- REMOVED Duplicate/Obsolete Styles --- */
+/* Removed .kitchen-order-card specific styles as they are merged into .order-card */
+/* Removed duplicate .pending-card definitions */
+/* Removed .pending-orders-area .order-list as .kitchen-order-list covers it */
+
+/* Add any other specific styles below */
