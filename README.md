@@ -10,6 +10,70 @@ Welcome to our submission for the Techathon Phase-01 competition. This project t
 
 ---
 
+# Project Setup
+
+This project consists of a Node.js backend and a React frontend.
+
+## Prerequisites
+
+* Node.js (which includes npm) installed.
+* A running PostgreSQL database instance.
+
+## Backend Setup
+
+1. *Navigate to the backend directory:*
+    
+    ```bash
+    cd backend
+    ```
+    
+2. *Install dependencies:*
+    
+    ```bash
+    npm install
+    ```
+    
+3. *Set up environment variables:*
+    * Create a `.env` file in the backend directory.
+    * Copy the contents of `.env.example` (if it exists) into `.env`.
+    * Fill in your database connection details (`DATABASE_URL` or individual `DB_` variables) and any other required variables (like `JWT_SECRET`).
+
+4. *Start the backend server:*
+    
+    ```bash
+    npm start
+    # Or:
+    node src/index.js
+    ```
+    
+    The backend should now be running (typically on http://localhost:3001 or the port specified in your `.env`).
+
+## Frontend Setup
+
+1. *Navigate to the frontend directory:*
+    
+    ```bash
+    cd ../frontend
+    # Or from the root:
+    cd frontend
+    ```
+    
+2. *Install dependencies:*
+    
+    ```bash
+    npm install
+    ```
+    
+3. *Start the frontend development server:*
+    
+    ```bash
+    npm run dev
+    ```
+    
+    The frontend application should open in your browser (typically on http://localhost:3000). It will connect to the backend API running locally.
+
+---
+
 # ESP32 Menu System
 
 A menu system using ESP32 DevKit V1, SSD1306 OLED (128x64, I2C), and 4 push buttons.
