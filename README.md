@@ -5,7 +5,7 @@ Welcome to our submission for the Techathon Phase-01 competition. This project t
 ## Submission Contents
 - [Solutions to Quick Fixes, Tech Tricks, Bonus Boosters, and Big Idea](#quick-fixes)
 - Hardware Simulation Code
-- Video Demo Link: [To be attached]
+- Video Demo Link: https://drive.google.com/drive/folders/1_bA339eUSc646bahWPDmTtxIswWvL8tg?usp=drive_link
 - Wokwi Project Link: https://wokwi.com/projects/429404013375725569
 
 ---
@@ -26,19 +26,48 @@ This project consists of a Node.js backend and a React frontend.
     ```bash
     cd backend
     ```
-    
+
 2. *Install dependencies:*
     
     ```bash
     npm install
     ```
+
+3. *Configure env*
     
-3. *Set up environment variables:*
+    ```
+    PORT=3000
+    DB_HOST='localhost'
+    DB_PORT='5432'
+    DB_NAME='bistro92'
+    DB_USER='bistro_user'
+    DB_PASSWORD='bistro_password'
+    // This is just some demo credentials
+    ```
+
+4. *Install postgres and create a Database 'bistro92' and User 'bistro_user' with a Password*
+
+    ```bash
+    psql -U bistro_user -d bistro92 -h localhost
+    ```
+5. *Grant full access to user 'bistro_user' to the Database 'bistro92'*
+    ```bash
+        ALTER DATABASE bistro92 OWNER TO bistro_user;
+        GRANT ALL ON SCHEMA public TO bistro_user;
+    ```
+
+6. *Initialize database*
+   ```bash
+       node src/db/db_init.js
+   ``` 
+    
+    
+7. *Set up environment variables:*
     * Create a `.env` file in the backend directory.
     * Copy the contents of `.env.example` (if it exists) into `.env`.
     * Fill in your database connection details (`DATABASE_URL` or individual `DB_` variables) and any other required variables (like `JWT_SECRET`).
 
-4. *Start the backend server:*
+8. *Start the backend server:*
     
     ```bash
     npm start
