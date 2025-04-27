@@ -12,7 +12,7 @@ const char* password = "";
 
 // --- Backend Server ---
 // IMPORTANT: Update this URL if your Ngrok tunnel changes!
-const char* serverUrl = "http://7695-2a09-bac1-b20-518-00-2a7-22.ngrok-free.app";
+const char* serverUrl = "http://7454-203-99-145-109.ngrok-free.app";
 
 // --- Device Configuration ---
 const int TABLE_NUMBER = 1; // Assign a unique table number to this device

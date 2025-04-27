@@ -40,7 +40,7 @@ router.post('/menu-items', async (req, res, next) => {
             RETURNING item_id, name, price, availability
         `;
         console.log(`Successfully added menu item ID: ${result[0].item_id}`);
-        res.status(201).json(result[0]); // Return the newly created item
+        res.status(201).json({item: result[0]}); // Return the newly created item
     } catch (err) {
         console.error('Error adding menu item:', err);
         next(err);

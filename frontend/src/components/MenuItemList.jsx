@@ -1,26 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './components.css'
 
-function MenuItemList() {
-  const [items, setItems] = useState([]);
+function MenuItemList({items, setItems}) {
+
   const [editingItem, setEditingItem] = useState(null);
   const [editName, setEditName] = useState('');
   const [editPrice, setEditPrice] = useState('');
   const [editAvailability, setEditAvailability] = useState(true);
   const [error, setError] = useState(null);
 
-  const fetchItems = async () => {
-    try {
-      const response = await axios.get('http://localhost:3000/api/admin/menu-items');
-      setItems(response.data);
-    } catch (err) {
-      setError('Failed to fetch menu items');
-    }
-  };
-
-  useEffect(() => {
-    fetchItems();
-  }, []);
 
   const handleEdit = (item) => {
     setEditingItem(item.item_id);
@@ -39,7 +28,8 @@ function MenuItemList() {
       });
       alert('Menu item updated successfully!');
       setEditingItem(null);
-      fetchItems();
+      // fetchItems();
+      setItems((prevItems) => prevItems.map(item => item.item_id === itemId ? { ...item, name: editName, price: parseFloat(editPrice), availability: editAvailability } : item));
     } catch (err) {
       setError(err.response?.data?.error || 'Failed to update menu item');
     }
@@ -51,7 +41,9 @@ function MenuItemList() {
     try {
       await axios.delete(`http://localhost:3000/api/admin/menu-items/${itemId}`);
       alert('Menu item deleted successfully!');
-      fetchItems();
+      // fetchItems();
+      setItems((prevItems) => prevItems.filter(item => item.item_id !== itemId));
+
     } catch (err) {
       setError(err.response?.data?.error || 'Failed to delete menu item');
     }

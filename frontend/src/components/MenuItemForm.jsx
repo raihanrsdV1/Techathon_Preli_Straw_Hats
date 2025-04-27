@@ -1,30 +1,7 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 
-function MenuItemForm({ onItemAdded }) {
-  const [name, setName] = useState('');
-  const [price, setPrice] = useState('');
-  const [availability, setAvailability] = useState(true);
-  const [error, setError] = useState(null);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError(null);
-    try {
-      await axios.post('http://localhost:3000/api/admin/menu-items', {
-        name,
-        price: parseFloat(price),
-        availability,
-      });
-      alert('Menu item added successfully!');
-      setName('');
-      setPrice('');
-      setAvailability(true);
-      if (onItemAdded) onItemAdded();
-    } catch (err) {
-      setError(err.response?.data?.error || 'Failed to add menu item');
-    }
-  };
+function MenuItemForm({ handleSubmit, error, name, price, setName, setPrice, availability, setAvailability }) {
+  
 
   return (
     <div>
