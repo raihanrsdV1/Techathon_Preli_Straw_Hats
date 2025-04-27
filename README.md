@@ -34,7 +34,7 @@ A menu system using ESP32 DevKit V1, SSD1306 OLED (128x64, I2C), and 4 push butt
 ### Buttons
 Each button connects to its GPIO (12, 13, 14, 18) and GND. Use `INPUT_PULLUP`.
 
-## Diagram
+## Circuit Diagram
 ![Circuit Diagram!](assets/circuit.png)
 
 ## Notes
